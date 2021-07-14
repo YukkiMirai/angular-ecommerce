@@ -8,5 +8,5 @@ import com.luv2code.ecommerce.entity.ProductCategory;
 @RepositoryRestResource(collectionResourceRel = "productCategory", path = "product-category")
 //Name of JSON entry // /product-category
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Long> {
-
+	
 }
