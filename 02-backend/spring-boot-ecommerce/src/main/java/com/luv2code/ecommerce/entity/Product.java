@@ -2,7 +2,6 @@ package com.luv2code.ecommerce.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Locale.Category;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

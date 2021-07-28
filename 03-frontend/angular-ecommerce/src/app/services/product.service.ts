@@ -3,21 +3,38 @@ import { HttpClient } from '@angular/common/http';
 import { Product } from '../common/product';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ProductCategory } from '../common/product-category';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
+
   private baseUrl = 'http://localhost:1997/api/products';
 
   constructor(private httpClient: HttpClient) { }
 
-  getProductList(): Observable<Product[]> {
-    return this.httpClient.get<GetResponse>(this.baseUrl).pipe(
+  getProductList(theCategoryId: number): Observable<Product[]> {
+
+    // need to build URL based on category id
+    const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
+
+    return this.httpClient.get<GetResponse>(searchUrl).pipe(
       map(response => response._embedded.products)
     );
   }
+
+  private categoryUrl = 'http://localhost:1997/api/product-category';
+
+  getProductCategories(): Observable<ProductCategory[]> {
+    // return this.httpClient.get<GetResponseProductCategory>(this.categoryUrl).pipe(
+    //   map(response => response._embedded));
+    return this.httpClient.get<ProductCategory[]>(this.categoryUrl);
+  }
+
+
+
 }
 
 interface GetResponse {
@@ -25,3 +42,9 @@ interface GetResponse {
     products: Product[];
   }
 }
+
+// interface GetResponseProductCategory {
+
+//   productCategory: ProductCategory[];
+
+// }
