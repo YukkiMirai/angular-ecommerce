@@ -3,6 +3,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/common/product';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list-grid.component.html',
@@ -11,8 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductListComponent implements OnInit {
 
   products: Product[];
-  currentCategoryId: number;
-  searchMode: boolean;
+  currentCategoryId: number = 0;
+  searchMode: boolean = false;
 
   constructor(private productService: ProductService,
     private route: ActivatedRoute) { }
